@@ -1,18 +1,18 @@
 package cx.kaminski.cache;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
-public class CachedObject<T> {
+@AllArgsConstructor
+class CachedObject<T> {
     @Getter
-    private LocalDateTime lastRetrievalTime = LocalDateTime.now();
+    @Setter
+    private LocalDateTime accessTime;
+    @Getter
     private final T value;
-
-    T getValue() {
-        lastRetrievalTime = LocalDateTime.now();
-        return value;
-    }
 }
