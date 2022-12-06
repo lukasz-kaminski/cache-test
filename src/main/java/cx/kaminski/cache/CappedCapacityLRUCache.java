@@ -2,6 +2,7 @@ package cx.kaminski.cache;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,18 +36,10 @@ public class CappedCapacityLRUCache<K, V> extends AbstractMapBackedCache<K, V> {
     }
 
     private void evictLeastRecentlyUsed() {
-        LocalDateTime oldestTimeStamp = now();
-        Object keyToRemove = null;
-        for (Map.Entry<K, CachedObject<V>> entry : map.entrySet()) {
-            LocalDateTime lastRetrievalTime = entry.getValue().getAccessTime();
-            if(lastRetrievalTime.isBefore(oldestTimeStamp)) {
-                oldestTimeStamp = lastRetrievalTime;
-                keyToRemove = entry.getKey();
-            }
-        }
-        if(keyToRemove != null) {
-            map.remove(keyToRemove);
-        }
+        map.entrySet().stream()
+                .min(Comparator.comparing(entry -> entry.getValue().getAccessTime()))
+                .map(Map.Entry::getKey)
+                .ifPresent(map::remove);
     }
 
     private LocalDateTime now() {
