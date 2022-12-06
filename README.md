@@ -16,5 +16,7 @@ This is a simple cache implementation, currently there's one removal strategy an
 Next I'd focus on:
 
 1. Testing the cache
+1. Hiding the map so it's internal to the Cache
+1. Refactoring `RemovalStrategy` so it doesn't require generics
 1. Rearranging classes and tests or refactoring `RemovalStrategy` so that `CachedObject` isn't public, it's an implementation detail
 1. Implementing and testing `ExpirableMapBasedCache` that has a separate thread for periodical eviction of expired cache entries
