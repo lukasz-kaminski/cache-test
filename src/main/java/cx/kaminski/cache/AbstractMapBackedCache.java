@@ -8,9 +8,8 @@ import java.util.Optional;
 /**
  * This is a base for map based cache implementations.
  * It takes care of wrapping/unwrapping values with {@link CachedObject}
- * and keeps key and value from being null.
- *
- *
+ * and keeps key and value from being null. Protected methods should be
+ * overriden to apply implementation specific operation on entries.
  *
  * @param <K> key type
  * @param <V> value type
