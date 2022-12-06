@@ -1,12 +1,12 @@
-package cx.kaminski.inpost;
+package cx.kaminski;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InpostApplication {
+public class Application {
 	public static void main(String[] args) {
-		SpringApplication.run(InpostApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
